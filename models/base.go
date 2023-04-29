@@ -15,12 +15,13 @@ func init() {
 	//os.Setenv("db_host", "localhost")
 	//os.Setenv("db_pass", "shafira")
 
-	username := os.Getenv("db_user")
-	password := os.Getenv("db_pass")
-	dbName := os.Getenv("db_name")
-	dbHost := os.Getenv("db_host")
+	username := os.Getenv("MYSQL_USER")
+	password := os.Getenv("MYSQL_PASSWORD")
+	dbName := os.Getenv("MYSQL_DBNAME")
+	dbHost := os.Getenv("MYSQL_HOST")
+	dbPort := os.Getenv("MYSQL_PORT")
 
-	dbUri := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", username, password, dbHost, dbName)
+	dbUri := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", username, password, dbHost, dbPort, dbName)
 	conn, err := gorm.Open(mysql.Open(dbUri), &gorm.Config{})
 
 	if err != nil {
