@@ -28,9 +28,8 @@ func init() {
 	if err != nil {
 		fmt.Print(err)
 	}
-	db.AutoMigrate(&Activities{}, &Todos{})
-
 	db = conn
+	db.AutoMigrate(&Activities{}, &Todos{})
 }
 
 func GetDB() *gorm.DB {
